@@ -15,8 +15,12 @@
  */
 package com.example.android.quakereport;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -33,17 +37,28 @@ public class EarthquakeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-        ArrayList<Earthquake> earthquakes = new ArrayList<>(asList(
-                new Earthquake(1.1, "Alger", "2010"),
-                new Earthquake(2.1, "Alger", "2011"),
-                new Earthquake(3.1, "Alger", "2012"),
-                new Earthquake(4.1, "Alger", "2013")
-        ));
+//        ArrayList<Earthquake> earthquakes = new ArrayList<>(asList(
+//                new Earthquake(1.1, "Alger", "2010"),
+//                new Earthquake(2.1, "Alger", "2011"),
+//                new Earthquake(3.1, "Alger", "2012"),
+//                new Earthquake(4.1, "Alger", "2013")
+//        ));
 
+        ArrayList<Earthquake> earthquakes = QueryUtils.extractEarthquakes();
 
-        EarthquakeAdapter adapter = new EarthquakeAdapter(this, earthquakes);
+        final EarthquakeAdapter adapter = new EarthquakeAdapter(this, earthquakes);
 
         ListView listView = (ListView) findViewById(R.id.list);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Earthquake earthquake = adapter.getItem(position);
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(earthquake.getmUrl()));
+                startActivity(i);
+            }
+        });
     }
 }

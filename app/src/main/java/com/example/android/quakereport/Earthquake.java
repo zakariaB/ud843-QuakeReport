@@ -15,22 +15,28 @@ public class Earthquake {
      */
     private double mMagnitude;
     private String mPlace;
-    private String mTime;
+    private long mTime;
+    private String mUrl;
 
-    /**
-     *
-     * @param mMagnitude
-     * @param mPlace
-     * @param mTime
-     */
-    public Earthquake(double mMagnitude, String mPlace, String mTime) {
-        this.mMagnitude = mMagnitude;
-        this.mPlace = mPlace;
-        this.mTime = mTime;
+    public String getmUrl() {
+        return mUrl;
     }
 
     /**
-     *
+     * @param mMagnitude
+     * @param mPlace
+     * @param mTime
+     * @param url
+     */
+    public Earthquake(double mMagnitude, String mPlace, long mTime, String url) {
+        this.mMagnitude = mMagnitude;
+        this.mPlace = mPlace;
+        this.mTime = mTime;
+        mUrl = url;
+
+    }
+
+    /**
      * @return
      */
     public double getmMagnitude() {
@@ -38,7 +44,6 @@ public class Earthquake {
     }
 
     /**
-     *
      * @return
      */
     public String getmPlace() {
@@ -46,10 +51,9 @@ public class Earthquake {
     }
 
     /**
-     *
      * @return
      */
-    public String getmTime() {
+    public long getmTime() {
         return mTime;
     }
 }
