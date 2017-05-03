@@ -60,7 +60,6 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         magnitudeCircle.setColor(magnitudeColor);
 
 
-
         // traitement place
         String originalLocation = earthquake.getmPlace();
         String primaryLocation;
